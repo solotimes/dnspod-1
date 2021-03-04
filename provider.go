@@ -3,7 +3,7 @@ package dnspod
 import (
 	"context"
 	"time"
-
+	"fmt"
 	"github.com/libdns/libdns"
 )
 
@@ -30,6 +30,7 @@ func (p *Provider) AppendRecords(ctx context.Context, zone string, records []lib
 
 	for _, record := range records {
 		newRecord, err := p.addDNSEntry(ctx, zone, record)
+		fmt.Printf("add record: %s, %s", zone, record)
 		if err != nil {
 			return nil, err
 		}
